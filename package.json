@@ -1,7 +1,8 @@
 {
-  "name": "my-project",
-  "version": "0.1.0",
+  "name": "dsa-master",
+  "version": "1.0.0",
   "private": true,
+  "description": "Master DSA from Zero to FAANG Ready - The #1 Free Platform for Cracking FAANG Interviews",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
