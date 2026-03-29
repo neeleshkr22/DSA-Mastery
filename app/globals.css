@@ -1,0 +1,331 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 13%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 13%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 13%;
+  --primary: 45 96% 56%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 0 0% 96%;
+  --secondary-foreground: 0 0% 13%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 45%;
+  --accent: 45 96% 56%;
+  --accent-foreground: 0 0% 0%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 90%;
+  --input: 0 0% 96%;
+  --ring: 45 96% 56%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 0 0% 8%;
+  --foreground: 0 0% 95%;
+  --card: 0 0% 12%;
+  --card-foreground: 0 0% 95%;
+  --popover: 0 0% 12%;
+  --popover-foreground: 0 0% 95%;
+  --primary: 45 96% 56%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 0 0% 18%;
+  --secondary-foreground: 0 0% 90%;
+  --muted: 0 0% 20%;
+  --muted-foreground: 0 0% 60%;
+  --accent: 45 96% 56%;
+  --accent-foreground: 0 0% 0%;
+  --destructive: 0 63% 50%;
+  --destructive-foreground: 0 0% 95%;
+  --border: 0 0% 20%;
+  --input: 0 0% 15%;
+  --ring: 45 96% 56%;
+
+  /* Extra custom tokens */
+  --glow-primary: 0 0 40px hsla(45,96%,56%,0.2);
+  --glow-accent:  0 0 60px hsla(45,96%,56%,0.15);
+  --purple: 0 0% 30%;
+  --green: 0 0% 25%;
+  --yellow: 45 96% 56%;
+  --red: 0 0% 35%;
+}
+
+@theme inline {
+  --font-sans: 'Poppins', 'Outfit', 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Fira Code', 'JetBrains Mono', monospace;
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+}
+
+/* ─── Keyframe Animations ──────────────────────────────────────────────── */
+@keyframes grid-fade {
+  0%   { opacity: 0.03; }
+  50%  { opacity: 0.07; }
+  100% { opacity: 0.03; }
+}
+@keyframes particle-float {
+  0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.4; }
+  50%       { transform: translateY(-20px) translateX(10px); opacity: 0.7; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px hsla(199,89%,54%,0.15); }
+  50%       { box-shadow: 0 0 50px hsla(199,89%,54%,0.4), 0 0 100px hsla(267,83%,60%,0.1); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes count-up {
+  from { opacity: 0; transform: scale(0.5); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes border-spin {
+  0%   { --border-angle: 0turn; }
+  100% { --border-angle: 1turn; }
+}
+@keyframes aurora {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ─── Utility Classes ──────────────────────────────────────────────────── */
+.animate-float         { animation: float 4s ease-in-out infinite; }
+.animate-pulse-glow    { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-shimmer       { animation: shimmer 3s linear infinite; }
+.animate-spin-slow     { animation: spin-slow 20s linear infinite; }
+.animate-slide-up      { animation: slide-up 0.6s ease-out forwards; }
+.animate-slide-in-left { animation: slide-in-left 0.6s ease-out forwards; }
+.animate-count-up      { animation: count-up 0.8s cubic-bezier(0.175,0.885,0.32,1.275) forwards; }
+
+/* ─── Code/Mono Font Usage ────────────────────────────────────────────── */
+.font-display { font-family: var(--font-mono); font-weight: 700; letter-spacing: -0.01em; }
+.font-code    { font-family: var(--font-mono); font-weight: 500; }
+.font-label   { font-family: var(--font-mono); font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* ─── Gradient Text ────────────────────────────────────────────────────── */
+.gradient-text {
+  color: hsl(var(--primary));
+  font-weight: 700;
+}
+.gradient-text-static {
+  color: hsl(var(--primary));
+  font-weight: 700;
+}
+
+/* ─── Glow Card ────────────────────────────────────────────────────────── */
+.glow-card {
+  position: relative;
+  transition: all 0.3s ease;
+}
+.glow-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: hsl(var(--primary)/0.1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+.glow-card:hover::before { opacity: 1; }
+.glow-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px hsla(45,96%,56%,0.12), 0 0 0 1px hsl(var(--primary)/0.3);
+}
+
+/* ─── Grid Background ──────────────────────────────────────────────────── */
+.bg-grid {
+  background-image: radial-gradient(circle, hsl(0,0%,100%/0.3) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: grid-fade 6s ease-in-out infinite;
+}
+.dark .bg-grid {
+  background-image: radial-gradient(circle, hsl(0,0%,100%/0.15) 1px, transparent 1px);
+}
+
+/* ─── Spotlight ────────────────────────────────────────────────────────── */
+.spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 600px 400px at 50% 0%, hsl(0,0%,15%/0.08) 0%, transparent 70%);
+}
+
+/* ─── Aurora Background ────────────────────────────────────────────────── */
+.aurora-bg {
+  background: linear-gradient(135deg,
+    hsl(0,0%,8%),
+    hsl(0,0%,10%),
+    hsl(0,0%,9%),
+    hsl(0,0%,8%)
+  );
+  background-size: 300% 300%;
+  animation: none;
+}
+
+/* ─── Shimmer Border ───────────────────────────────────────────────────── */
+.shimmer-border {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-border::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(90deg, transparent, hsl(var(--primary)/0.5), transparent);
+  background-size: 200% auto;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ─── Badge Glows ──────────────────────────────────────────────────────── */
+.badge-easy   { background: hsl(0 0% 30% / 0.15); color: hsl(0 0% 70%); border: 1px solid hsl(0 0% 30% / 0.3); }
+.badge-medium { background: hsl(45 96% 56% / 0.15);  color: hsl(45 96% 56%);  border: 1px solid hsl(45 96% 56% / 0.3); }
+.badge-hard   { background: hsl(0 0% 40% / 0.15);   color: hsl(0 0% 75%);   border: 1px solid hsl(0 0% 40% / 0.3); }
+
+/* ─── Code Block ───────────────────────────────────────────────────────── */
+.code-block {
+  position: relative;
+  background: hsl(0 0% 10%);
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+.code-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background: hsl(0 0% 12%);
+  border-bottom: 1px solid hsl(var(--border));
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+}
+.code-block-dots {
+  display: flex;
+  gap: 6px;
+}
+.code-block-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.code-block-dots span:nth-child(1) { background: hsl(45 96% 56%); }
+.code-block-dots span:nth-child(2) { background: hsl(0 0% 40%); }
+.code-block-dots span:nth-child(3) { background: hsl(0 0% 30%); }
+
+/* ─── Scrollbar ────────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: hsl(var(--background)); }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--primary)/0.6); }
+
+/* ─── Base ─────────────────────────────────────────────────────────────── */
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+  code { font-family: var(--font-mono); }
+  pre {
+    @apply bg-card border border-border rounded-lg overflow-x-auto;
+  }
+}
+
+/* ─── Level Color Accents ──────────────────────────────────────────────── */
+.level-0  { --lc: 45 96% 56%; }   /* yellow  */
+.level-1  { --lc: 45 96% 56%; }   /* yellow  */
+.level-2  { --lc: 0 0% 40%; }     /* gray    */
+.level-3  { --lc: 0 0% 35%; }     /* gray    */
+.level-4  { --lc: 45 96% 56%; }   /* yellow  */
+.level-5  { --lc: 0 0% 40%; }     /* gray    */
+.level-6  { --lc: 0 0% 35%; }     /* gray    */
+.level-7  { --lc: 45 96% 56%; }   /* yellow  */
+
+.level-badge {
+  background: hsl(var(--lc) / 0.15);
+  color: hsl(var(--lc));
+  border: 1px solid hsl(var(--lc) / 0.4);
+  border-radius: 9999px;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.level-glow { box-shadow: 0 0 0 1px hsl(var(--lc)/0.2); }
+.level-glow:hover { box-shadow: 0 0 30px hsl(var(--lc)/0.15), 0 0 0 1px hsl(var(--lc)/0.4); }
+.level-bar { background: linear-gradient(90deg, hsl(var(--lc)), hsl(var(--lc)/0.5)); }
+
+/* ─── Topic tag chips ──────────────────────────────────────────────────── */
+.tag-chip {
+  background: hsl(45 96% 56%/0.15);
+  color: hsl(45 96% 56%);
+  border: 1px solid hsl(45 96% 56%/0.3);
+  border-radius: 9999px;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+/* ─── Stagger delays ───────────────────────────────────────────────────── */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* ─── Interview importance badges ──────────────────────────────────────── */
+.importance-critical { background: hsl(45 96% 56%/0.15);   color: hsl(45 96% 56%);   border: 1px solid hsl(45 96% 56%/0.4);   border-radius: 9999px; padding: 0.15rem 0.6rem; font-size: 0.7rem; font-weight: 600; font-family: var(--font-mono); letter-spacing: 0.02em; }
+.importance-high     { background: hsl(45 96% 56%/0.12);  color: hsl(45 96% 56%);  border: 1px solid hsl(45 96% 56%/0.3);  border-radius: 9999px; padding: 0.15rem 0.6rem; font-size: 0.7rem; font-weight: 600; font-family: var(--font-mono); letter-spacing: 0.02em; }
+.importance-medium   { background: hsl(0 0% 40%/0.15);  color: hsl(0 0% 70%);  border: 1px solid hsl(0 0% 40%/0.3);  border-radius: 9999px; padding: 0.15rem 0.6rem; font-size: 0.7rem; font-weight: 600; font-family: var(--font-mono); letter-spacing: 0.02em; }
+.importance-low      { background: hsl(0 0% 30%/0.15); color: hsl(0 0% 65%); border: 1px solid hsl(0 0% 30%/0.3); border-radius: 9999px; padding: 0.15rem 0.6rem; font-size: 0.7rem; font-weight: 600; font-family: var(--font-mono); letter-spacing: 0.02em; }
