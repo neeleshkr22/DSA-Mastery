@@ -153,11 +153,53 @@ Each with:
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Deployment
 
-### Prerequisites
-- Node.js 18+
-- npm or pnpm
+### Deploy to Vercel (Recommended)
+
+The easiest way to deploy DSA Master is using [Vercel](https://vercel.com):
+
+```sh
+# 1. Push to GitHub (already done!)
+$ git push origin main
+
+# 2. Visit Vercel website
+# Go to https://vercel.com/new
+
+# 3. Import your GitHub repository
+# Select: neeleshkr22/DSA-Mastery
+
+# 4. Configure project
+$ Framework: Next.js
+$ Root Directory: ./
+$ Build Command: npm run build
+$ Install Command: npm install
+$ Output Directory: .next
+
+# 5. Click Deploy!
+# Your app will be live in minutes 🎉
+```
+
+**Live URL**: Your Vercel deployment will be at `https://dsa-master.vercel.app`
+
+### Deploy Manually
+
+```sh
+# Build for production
+$ npm run build
+
+# Start production server
+$ npm run start
+```
+
+### Environment Variables (if needed in future)
+
+Create a `.env.local` file:
+```
+NEXT_PUBLIC_API_URL=your_api_url_here
+```
+
+
 
 ### Installation
 
